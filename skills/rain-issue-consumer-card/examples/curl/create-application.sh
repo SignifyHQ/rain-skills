@@ -29,7 +29,7 @@ case "$VARIANT" in
     ;;
   *)
     # Variant 1: full PII. Sandbox: lastName contains "approved" -> auto-approve.
-    BODY="{${COMMON},\"firstName\":\"Jane\",\"lastName\":\"Doe approved\",\"birthDate\":\"1990-04-15\",\"nationalId\":\"123456789\",\"countryOfIssue\":\"US\",\"email\":\"jane.doe.$(date +%s)@example.com\",\"address\":{\"line1\":\"123 Main St\",\"city\":\"New York\",\"region\":\"NY\",\"postalCode\":\"10001\",\"countryCode\":\"US\"}}"
+    BODY="{${COMMON},\"firstName\":\"Jane\",\"lastName\":\"Doe approved\",\"birthDate\":\"1990-04-15\",\"nationalId\":\"123456789\",\"countryOfIssue\":\"US\",\"email\":\"jane.doe.$(date +%s)@example.com\",\"phoneCountryCode\":\"1\",\"phoneNumber\":\"5125550100\",\"address\":{\"line1\":\"123 Main St\",\"city\":\"New York\",\"region\":\"NY\",\"postalCode\":\"10001\",\"countryCode\":\"US\"}}"
     ;;
 esac
 

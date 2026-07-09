@@ -43,8 +43,7 @@ sandbox key.
 | environment | `dev` (sandbox) or `production` (live). Defaults to `dev` in all three SDKs. |
 | `ipAddresses` *(optional)* | An IP allowlist set at key-creation time. See [IP restrictions](#ip-restrictions-optional). |
 
-Advise the user to store the key in `.claude/settings.local.json` (gitignored,
-auto-loaded by Claude Code) or in `.env`:
+Advise the user to store the key in `.env`:
 
 ```json
 // .claude/settings.local.json

@@ -76,6 +76,8 @@ def main():
         national_id="123456789",
         country_of_issue="US",
         email=f"jane.doe.{int(time.time())}@example.com",
+        phone_country_code="1",   # required in practice; spec marks it optional
+        phone_number="5125550100",
         address={"line1": "123 Main St", "city": "New York", "region": "NY",
                  "postal_code": "10001", "country_code": "US"},
         extra_headers={"Idempotency-Key": str(uuid.uuid4())},

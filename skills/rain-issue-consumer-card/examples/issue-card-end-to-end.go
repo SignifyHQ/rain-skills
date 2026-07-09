@@ -74,6 +74,8 @@ func main() {
 		NationalID:               rainsdk.String("123456789"),
 		CountryOfIssue:           rainsdk.String("US"),
 		Email:                    rainsdk.String(fmt.Sprintf("jane.doe.%d@example.com", time.Now().Unix())),
+		PhoneCountryCode:         rainsdk.String("1"), // required in practice; spec marks it optional
+		PhoneNumber:              rainsdk.String("5125550100"),
 	}, option.WithHeader("Idempotency-Key", randomKey()))
 	if err != nil {
 		panic(err)

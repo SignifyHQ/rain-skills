@@ -60,6 +60,8 @@ async function main() {
       nationalId: "123456789",
       countryOfIssue: "US",
       email: `jane.doe.${Date.now()}@example.com`,
+      phoneCountryCode: "1",   // required in practice; spec marks it optional
+      phoneNumber: "5125550100",
       address: { line1: "123 Main St", city: "New York", region: "NY", postalCode: "10001", countryCode: "US" },
     },
     { headers: { "Idempotency-Key": crypto.randomUUID() } },

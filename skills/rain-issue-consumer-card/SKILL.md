@@ -97,7 +97,10 @@ but Rain's own examples always send `true`, and if you send it, it must be `true
 recommend sending `isTermsOfServiceAccepted: true`.)
 
 For the full-PII variant the additional required fields are: `firstName`, `lastName`,
-`birthDate`, `nationalId` (9-digit SSN for US), `countryOfIssue`, `email`, `address`.
+`birthDate`, `nationalId` (9-digit SSN for US), `countryOfIssue`, `email`,
+`phoneCountryCode`, `phoneNumber`, `address`. **Send `phoneCountryCode`/`phoneNumber` even
+though the OpenAPI spec marks them optional — the sandbox rejects the create without them.**
+Both are digits-only (`^[0-9]+$`): e.g. `phoneCountryCode: "1"`, `phoneNumber: "5125550100"`.
 
 Full field reference (required vs optional, all three variants, wallet rules):
 [`references/application-fields.md`](references/application-fields.md).
@@ -126,6 +129,8 @@ const application = await client.applications.user.create({
   nationalId: '123456789',
   countryOfIssue: 'US',
   email: 'jane.doe@example.com',
+  phoneCountryCode: '1',            // required in practice (spec marks it optional)
+  phoneNumber: '5125550100',        // digits only, ^[0-9]+$
   address: { line1: '123 Main St', city: 'New York', region: 'NY', postalCode: '10001', countryCode: 'US' },
 });
 
@@ -154,6 +159,7 @@ curl -sS -X POST "https://api-dev.raincards.xyz/v1/issuing/applications/user" \
         "isTermsOfServiceAccepted":true, "walletAddress":"0x1234...5678",
         "firstName":"Jane", "lastName":"Doe approved", "birthDate":"1990-04-15",
         "nationalId":"123456789", "countryOfIssue":"US", "email":"jane.doe@example.com",
+        "phoneCountryCode":"1", "phoneNumber":"5125550100",
         "address":{"line1":"123 Main St","city":"New York","region":"NY","postalCode":"10001","countryCode":"US"} }'
 ```
 

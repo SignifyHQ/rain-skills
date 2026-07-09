@@ -58,9 +58,14 @@ Supply identity fields directly. **Required:** `firstName`, `lastName`, `birthDa
 | `nationalId` | **yes** | string | 9-digit SSN if `countryOfIssue` is US. |
 | `countryOfIssue` | **yes** | `CountryCode` | |
 | `email` | **yes** | string | |
-| `phoneCountryCode` | no | string `^[0-9]+$` | |
-| `phoneNumber` | no | string `^[0-9]+$` | |
+| `phoneCountryCode` | **yes** | string `^[0-9]+$` | Digits only, no `+` — e.g. `"1"`. |
+| `phoneNumber` | **yes** | string `^[0-9]+$` | Digits only, no separators — e.g. `"5125550100"`. |
 | `address` | **yes** | `PhysicalAddress` | See below. |
+
+> **Phone is required in practice.** The OpenAPI spec (and the generated SDK types) mark
+> `phoneCountryCode`/`phoneNumber` as optional, but the sandbox **rejects the create call
+> without them**. Always send both, digits only (`^[0-9]+$`) — e.g.
+> `phoneCountryCode: "1"`, `phoneNumber: "5125550100"`.
 
 `PhysicalAddress` requires `line1`, `city`, `postalCode`, `countryCode`; optional `line2`,
 `region`.
