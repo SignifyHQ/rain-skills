@@ -46,7 +46,7 @@ If you discover a security vulnerability in these skills, in the bundled scripts
 Rain integration patterns they document, please report it privately. **Do not open a public
 issue** for a security report.
 
-- **Contact:** security@rain.xyz _(placeholder — confirm the correct address before publishing)_
+- **Contact:** platform@rain.xyz
 - Include: a description of the issue, affected skill/script, reproduction steps, and impact.
 - We'll acknowledge receipt and work with you on a fix and coordinated disclosure timeline.
 
