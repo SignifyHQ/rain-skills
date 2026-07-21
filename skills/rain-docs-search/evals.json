@@ -1,0 +1,41 @@
+{
+  "skill_name": "rain-docs-search",
+  "evals": [
+    {
+      "id": "find-docs-page",
+      "prompt": "Where in the Rain docs is settlement for partner-managed programs explained? Give me the link.",
+      "expected_output": "Routes to rain-docs-search. Runs search_docs.sh against the Mintlify Search API (assistant key + domain slug from env), de-duplicates results by path, and returns a verified https://docs.rain.xyz/... link, noting the Rain-Managed vs Partner-Managed variant. Does NOT guess a URL from memory.",
+      "files": ["SKILL.md", "scripts/search_docs.sh"]
+    },
+    {
+      "id": "support-reply-link",
+      "prompt": "A client asked how to activate a physical Rain card — find the right docs page to link in my reply.",
+      "expected_output": "Routes to rain-docs-search. Searches with short keyword queries (e.g. \"physical card activation\"), presents the page title + docs.rain.xyz link + one-line reason. May quote the matched content chunk. Does not attempt to perform the activation via the Rain API.",
+      "files": ["SKILL.md", "scripts/search_docs.sh"]
+    },
+    {
+      "id": "docs-stats-report",
+      "prompt": "Pull our docs usage stats from Mintlify for this quarter — top searches, page views, unique visitors, and assistant queries — like the numbers in the Coinbase case study.",
+      "expected_output": "Routes to rain-docs-search. Uses docs_analytics.sh with the admin key and projectId, passes explicit dateFrom/dateTo, pages through limit/offset/hasMore before totalling, and presents the numbers grouped as discoverability / AI engagement / content quality with the date range stated.",
+      "files": ["SKILL.md", "scripts/docs_analytics.sh", "references/mintlify-api.md"]
+    },
+    {
+      "id": "assistant-question",
+      "prompt": "Ask the Rain docs assistant what the difference between Rain-Managed and Partner-Managed authorization is, and cite the source pages.",
+      "expected_output": "Routes to rain-docs-search. Uses ask_assistant.sh (streamed response), relays the grounded answer and cites the retrieved page paths as docs.rain.xyz links.",
+      "files": ["SKILL.md", "scripts/ask_assistant.sh"]
+    },
+    {
+      "id": "skip-to-generic-api-call",
+      "prompt": "Get the credit balance for a Rain user.",
+      "expected_output": "Does NOT use rain-docs-search. Routes to rain-api-generic (calling a raincards.xyz endpoint, not finding documentation).",
+      "files": ["SKILL.md"]
+    },
+    {
+      "id": "skip-to-auth-401",
+      "prompt": "My Rain API call returns 401 — how do I fix authentication?",
+      "expected_output": "Does NOT use rain-docs-search. Routes to rain-api-auth (Api-Key header and 401/403 triage live there). rain-docs-search would only assist if the user explicitly asked to find the docs page covering it.",
+      "files": ["SKILL.md"]
+    }
+  ]
+}

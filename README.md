@@ -66,6 +66,7 @@ one based on each skill's `description` (see [How these fit together](#how-these
 | [`rain-issue-consumer-card`](./skills/rain-issue-consumer-card/SKILL.md) | You're issuing a Rain consumer card end-to-end — create a KYC user application, upload compliance docs, await approval, create a virtual/physical (or agent-scoped) card, and securely retrieve + decrypt the encrypted PAN/CVC. |
 | [`rain-managed-authorizations`](./skills/rain-managed-authorizations/SKILL.md) | You're receiving Rain card-spend webhooks for a **Rain-Managed** program — stand up the receiver, verify signatures, and handle the transaction lifecycle (auth, incremental, reversal, refund, settlement). Rain auto-decides; you don't approve/decline at auth time. |
 | [`rain-api-generic`](./skills/rain-api-generic/SKILL.md) | You need to call a Rain endpoint **not** covered by a skill above (balances, transfers, disputes, key management, simulate endpoints). Find the endpoint in the spec first, then build the call. |
+| [`rain-docs-search`](./skills/rain-docs-search/SKILL.md) | You're looking for the **right docs page** for a topic — search [docs.rain.xyz](https://docs.rain.xyz) via the Mintlify Search/Assistant APIs and cite verified links — or you want docs **usage analytics** (searches, page views, visitors, assistant queries) from the Mintlify Analytics export API. |
 
 ---
 
@@ -79,6 +80,10 @@ one based on each skill's `description` (see [How these fit together](#how-these
   `rain-managed-authorizations` (process spend on that card after it's live).
 - **`rain-api-generic` is the catch-all.** When no specific skill fits, it gives the agent a
   disciplined "find the endpoint in the spec, then call it" procedure instead of guessing.
+- **`rain-docs-search` finds and measures the documentation itself.** It never calls
+  `raincards.xyz` — it queries the Mintlify APIs behind docs.rain.xyz to locate the right
+  page to read or link, and to export docs usage stats. The other skills point at it when
+  the user needs a citation rather than an API call.
 
 The skills cross-reference each other so the agent hands off correctly — issuing a card points
 to auth for SDK setup, and the authorizations skill points back to auth's signature-verification
