@@ -40,16 +40,16 @@ them accordingly:
 Skills install flat into `~/.agents/skills/<skill>/` via the `skills` CLI:
 
 ```bash
-npx skills add <org>/rain-agent-skills --all
+npx skills add SignifyHQ/rain-agent-skills --all
 ```
 
-Replace `<org>` with the GitHub org/owner this repo is published under. `--all` installs
+Replace `SignifyHQ` with the GitHub org/owner this repo is published under. `--all` installs
 every skill in the catalog below; omit it and name a skill to install just one.
 
 ### Manual install (git clone fallback)
 
 ```bash
-git clone https://github.com/<org>/rain-agent-skills.git
+git clone https://github.com/SignifyHQ/rain-agent-skills.git
 cp -r rain-agent-skills/skills/* ~/.agents/skills/
 ```
 
